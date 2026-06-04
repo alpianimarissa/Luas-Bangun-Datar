@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Interaktif Luas Bangun Datar Kelas 9</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Poppins & Lato -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+        }
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Custom scrollbar for beautiful dashboard look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800">
+
+    <!-- CONTAINER UTAMA -->
+    <div class="max-w-7xl mx-auto px-4 py-6 md:py-10">
+        
+        <!-- HEADER DASHBOARD (PERSIS SEPERTI DI SCREENSHOT) -->
+        <header class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white text-xl shadow-md shadow-indigo-100">
+                    <i class="fa-solid fa-shapes"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold font-poppins text-slate-900">Kuis & Visualisasi Luas Bangun Datar</h1>
+                    <p class="text-xs md:text-sm text-slate-500 font-medium font-poppins">Latihan Geometri Interaktif — Kelas 9 (Medium, Hard & Challenge)</p>
+                </div>
+            </div>
+            
+            <!-- NAVIGASI TAB ATAS -->
+            <div class="flex bg-slate-100 p-1.5 rounded-xl self-stretch md:self-auto overflow-x-auto">
+                <button onclick="switchTab('kuis')" id="tab-kuis" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-lg transition-all duration-200 bg-white text-indigo-600 shadow-sm flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-square-poll-horizontal"></i> Soal Mandiri
+                </button>
+                <button onclick="switchTab('rumus')" id="tab-rumus" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900 flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-compass-drafting"></i> Rumus Dasar
+                </button>
+                <button onclick="switchTab('stat')" id="tab-stat" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900 flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-award"></i> Hasil Belajar
+                </button>
+            </div>
+        </header>
+
+        <!-- VIEW 1: TAB SOAL MANDIRI (MAIN INTERACTIVE AREA) -->
+        <main id="view-kuis" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- SEBELAH KIRI: KARTU SOAL & OPSI -->
+            <div class="lg:col-span-2 flex flex-col gap-6">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 md:p-8 relative overflow-hidden transition-all duration-300 min-h-[500px] flex flex-col justify-between">
+                    
+                    <!-- Top Info Row -->
+                    <div>
+                        <div class="flex justify-between items-center border-b border-slate-100 pb-4 mb-6">
+                            <div>
+                                <span class="text-xs font-bold text-indigo-600 tracking-wider uppercase font-poppins" id="info-nomor-soal">SOAL 1 DARI 12</span>
+                                <span class="ml-3 px-2.5 py-0.5 bg-indigo-50 text-indigo-700 text-[10px] font-bold rounded-full font-poppins" id="info-level-soal">MEDIUM</span>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-400 bg-slate-50 px-3 py-1 rounded-full flex items-center gap-1 font-poppins">
+                                <i class="fa-solid fa-tag text-slate-300"></i> Topik: <span id="info-topik">Luas Daerah</span>
+                            </span>
+                        </div>
+
+                        <!-- Pertanyaan Utama -->
+                        <h2 class="text-lg md:text-xl font-bold font-poppins text-slate-900 leading-relaxed mb-6" id="teks-pertanyaan">
+                            Memuat pertanyaan...
+                        </h2>
+
+                        <!-- Ilustrasi Visual Masalah (Sangat Membantu Anak) -->
+                        <div class="w-full flex justify-center py-6 bg-slate-50 rounded-2xl border border-slate-100 mb-6">
+                            <div id="visual-container" class="w-full max-w-[320px] h-[200px] flex items-center justify-center">
+                                <!-- Dinamis disisipkan via JS -->
+                            </div>
+                        </div>
+
+                        <!-- Opsi Jawaban (Pilihan Ganda) -->
+                        <div class="grid grid-cols-1 gap-3.5 mb-8" id="container-opsi">
+                            <!-- Dinamis disisipkan via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Tombol Aksi Bawah -->
+                    <div class="flex items-center justify-between border-t border-slate-100 pt-6 mt-4">
+                        <button onclick="lewatiSoal()" id="btn-lewati" class="px-5 py-2.5 text-sm font-semibold text-slate-500 hover:text-slate-800 transition-colors duration-200">
+                            Lewati Soal
+                        </button>
+                        <button onclick="periksaJawaban()" id="btn-periksa" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold font-poppins rounded-xl transition-all duration-200 shadow-md shadow-indigo-100 flex items-center gap-2">
+                            Periksa Jawaban <i class="fa-solid fa-circle-check"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- BOX PENJELASAN (AKAN MUNCUL SETELAH CLICK PERIKSA JAWABAN) -->
+                <div id="box-pembahasan" class="hidden bg-emerald-50 border border-emerald-200 rounded-2xl p-6 md:p-8 shadow-sm transition-all duration-300">
+                    <div class="flex items-start gap-4">
+                        <div id="pembahasan-icon" class="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg shrink-0">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 id="pembahasan-judul" class="text-base font-bold font-poppins text-slate-900 mb-2">Penjelasan Langkah demi Langkah</h3>
+                            <div id="pembahasan-teks" class="text-sm md:text-base text-slate-600 space-y-4 leading-relaxed">
+                                <!-- Penjelasan super jelas & bertahap disisipkan disini -->
+                            </div>
+                            <div class="mt-6 flex justify-end">
+                                <button onclick="nextSoal()" class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold rounded-xl flex items-center gap-2 transition-colors duration-200 shadow">
+                                    Lanjut ke Soal Berikutnya <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- SEBELAH KANAN: PANEL NAVIGASI ANGKA (PERSIS SCREENSHOT) -->
+            <div class="flex flex-col gap-6">
+                
+                <!-- Navigasi Panel Card -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                    <h3 class="text-base font-bold font-poppins text-slate-900 mb-5 pb-3 border-b border-slate-100 flex items-center gap-2">
+                        <i class="fa-solid fa-compass text-indigo-500"></i> Navigasi Soal Mandiri
+                    </h3>
+                    
+                    <!-- Grid Angka 1-12 -->
+                    <div class="grid grid-cols-4 gap-3 mb-6" id="grid-navigasi">
+                        <!-- Dinamis tombol 1 - 12 disisipkan via JS -->
+                    </div>
+
+                    <!-- Indikator Keterangan Warna -->
+                    <div class="border-t border-slate-100 pt-5 space-y-3">
+                        <div class="flex items-center justify-between text-xs text-slate-500">
+                            <span class="flex items-center gap-2"><span class="w-3.5 h-3.5 bg-indigo-600 rounded-md border border-indigo-200"></span> Sedang Dikerjakan</span>
+                            <span class="flex items-center gap-2"><span class="w-3.5 h-3.5 bg-emerald-500 rounded-md"></span> Benar</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-slate-500">
+                            <span class="flex items-center gap-2"><span class="w-3.5 h-3.5 bg-rose-500 rounded-md"></span> Salah</span>
+                            <span class="flex items-center gap-2"><span class="w-3.5 h-3.5 bg-slate-100 rounded-md border border-slate-200"></span> Belum Dijawab</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Score Card -->
+                <div class="bg-gradient-to-br from-indigo-900 to-slate-900 rounded-2xl text-white p-6 shadow-xl relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 opacity-10 text-[140px] font-bold select-none pointer-events-none font-poppins">
+                        %
+                    </div>
+                    <h3 class="text-sm font-semibold text-indigo-200 font-poppins uppercase tracking-wider mb-4">Statistik Instan</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/10 p-4 rounded-xl backdrop-blur-sm">
+                            <span class="text-xs text-indigo-200 block mb-1">Kemajuan Kuis</span>
+                            <span class="text-2xl font-bold font-poppins" id="score-progres">0/12</span>
+                            <span class="text-[10px] text-slate-300 block mt-1">soal diselesaikan</span>
+                        </div>
+                        <div class="bg-white/10 p-4 rounded-xl backdrop-blur-sm">
+                            <span class="text-xs text-indigo-200 block mb-1">Akurasi Jawaban</span>
+                            <span class="text-2xl font-bold font-poppins text-emerald-400" id="score-benar">0</span>
+                            <span class="text-[10px] text-slate-300 block mt-1">jawaban benar</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+        <!-- VIEW 2: TAB RANGKUMAN RUMUS -->
+        <section id="view-rumus" class="hidden bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
+            <h2 class="text-2xl font-bold font-poppins text-slate-900 mb-4 border-b border-slate-100 pb-4">
+                <i class="fa-solid fa-circle-info text-indigo-600 mr-2"></i> Rangkuman Rumus Dasar Bangun Datar
+            </h2>
+            <p class="text-slate-600 mb-8 font-poppins">Gunakan panduan ringkas ini sebagai jembatan ingatan sebelum mulai menghitung soal-soal di atas.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Persegi & Persegi Panjang -->
+                <div class="border border-slate-150 rounded-xl p-5 hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center text-lg"><i class="fa-solid fa-vector-square"></i></div>
+                        <h3 class="font-bold font-poppins text-slate-800">Persegi & Panjang</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><strong>Luas Persegi:</strong> <code class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600">s &times; s</code></li>
+                        <li><strong>Luas Persegi Panjang:</strong> <code class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600">p &times; l</code></li>
+                    </ul>
+                </div>
+
+                <!-- Segitiga -->
+                <div class="border border-slate-150 rounded-xl p-5 hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center text-lg"><i class="fa-solid fa-play rotate-270"></i></div>
+                        <h3 class="font-bold font-poppins text-slate-800">Segitiga</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><strong>Luas Segitiga:</strong> <code class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600">&frac12; &times; a &times; t</code></li>
+                    </ul>
+                </div>
+
+                <!-- Lingkaran -->
+                <div class="border border-slate-150 rounded-xl p-5 hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center text-lg"><i class="fa-solid fa-circle"></i></div>
+                        <h3 class="font-bold font-poppins text-slate-800">Lingkaran</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><strong>Luas Lingkaran:</strong> <code class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600">&pi; &times; r&sup2;</code></li>
+                        <li><strong>Luas &frac14; Lingkaran:</strong> <code class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600">&frac14; &times; &pi; &times; r&sup2;</code></li>
+                    </ul>
+                </div>
+
+                <!-- Trapesium -->
+                <div class="border border-slate-150 rounded-xl p-5 hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center text-lg"><i class="fa-solid fa-draw-polygon"></i></div>
+                        <h3 class="font-bold font-poppins text-slate-800">Trapesium</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li><strong>Luas Trapesium:</strong> <code class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600">&frac12; &times; (a+b) &times; t</code></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 3: TAB STATISTIK BELAJAR -->
+        <section id="view-stat" class="hidden bg-white rounded-2xl shadow-sm border border-slate-100 p-8 text-center py-16">
+            <div class="max-w-md mx-auto">
+                <div class="w-20 h-20 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
+                    <i class="fa-solid fa-trophy animate-bounce"></i>
+                </div>
+                <h2 class="text-2xl font-bold font-poppins text-slate-900 mb-3">Lacak Prestasimu!</h2>
+                <p class="text-slate-500 mb-6 text-sm font-poppins">Hasil kuis tersimpan secara lokal pada sesi ini. Ayo selesaikan semua tantangan hingga bernilai sempurna!</p>
+                <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 grid grid-cols-2 gap-4">
+                    <div>
+                        <span class="text-2xl font-bold text-slate-900" id="stat-selesai">0</span>
+                        <span class="text-xs text-slate-400 block font-poppins">Selesai Dikerjakan</span>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-bold text-emerald-500" id="stat-benar">0</span>
+                        <span class="text-xs text-slate-400 block font-poppins">Jawaban Benar</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- DATASET SOAL JAWABAN DAN ILUSTRASI SVG -->
+    <script>
+        const questionsData = [
+            {
+                number: 1,
+                level: "MEDIUM",
+                topic: "Luas Taman (Kolam)",
+                question: "Sebuah taman berbentuk persegi panjang dengan panjang 24 m dan lebar 18 m. Di tengah taman terdapat kolam berbentuk persegi dengan sisi 8 m. Tentukan luas daerah taman yang tidak tertutup kolam.",
+                svg: `
+                <svg viewBox="0 0 160 120" class="w-full h-full">
+                    <!-- Taman Luar -->
+                    <rect x="10" y="10" width="140" height="100" fill="#ccfbf1" stroke="#0d9488" stroke-width="2" rx="4" />
+                    <!-- Kolam Dalam -->
+                    <rect x="55" y="40" width="45" height="40" fill="#bae6fd" stroke="#0284c7" stroke-width="2" rx="2" />
+                    <text x="65" y="64" font-size="8" fill="#0369a1" font-weight="bold" class="font-poppins">Kolam</text>
+                    
+                    <!-- Label Dimensi -->
+                    <!-- Panjang Taman -->
+                    <line x1="10" y1="115" x2="150" y2="115" stroke="#0d9488" stroke-width="1.5" />
+                    <text x="70" y="112" font-size="6" fill="#0d9488" font-weight="bold">24 m</text>
+                    <!-- Lebar Taman -->
+                    <line x1="5" y1="10" x2="5" y2="110" stroke="#0d9488" stroke-width="1.5" />
+                    <text x="8" y="65" font-size="6" fill="#0d9488" font-weight="bold" transform="rotate(-90 8 65)">18 m</text>
+                    <!-- Sisi Kolam -->
+                    <line x1="55" y1="35" x2="100" y2="35" stroke="#0284c7" stroke-width="1" />
+                    <text x="73" y="32" font-size="6" fill="#0284c7" font-weight="bold">8 m</text>
+                </svg>`,
+                options: [
+                    { id: 'A', text: "304 m²" },
+                    { id: 'B', text: "368 m²" },
+                    { id: 'C', text: "432 m²" },
+                    { id: 'D', text: "496 m²" }
+                ],
+                correct: 'B',
+                explanation: `
+                <div class="space-y-4 font-poppins">
+                    <p class="font-semibold text-slate-800">Mari kita pecah langkah pengerjaannya secara visual! 🍃</p>
+                    <div class="p-4 bg-white rounded-xl border border-slate-100 shadow-sm space-y-2 text-xs">
+                        <p class="font-semibold text-indigo-600"><i class="fa-solid fa-lightbulb"></i> Strategi Dasar:</p>
+                        <p class="text-slate-500">Untuk mencari luas daerah taman yang tidak tertutup kolam, kita cukup mengurangi <strong>Luas Taman Seluruhnya</strong> dengan <strong>Luas Kolam</strong>.</p>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                            <p><strong>Hitung Luas Taman Utuh:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas Taman = panjang &times; lebar = 24 m &times; 18 m = <strong>432 m²</strong></p>
+                        
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                            <p><strong>Hitung Luas Kolam:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas Kolam = sisi &times; sisi = 8 m &times; 8 m = <strong>64 m²</strong></p>
+
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                            <p><strong>Kurangkan Luas Keduanya:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-emerald-50 p-2 rounded-lg text-emerald-700 font-bold">Sisa Luas = Luas Taman - Luas Kolam = 432 m² - 64 m² = 368 m²</p>
+                    </div>
+                </div>`
+            },
+            {
+                number: 2,
+                level: "MEDIUM",
+                topic: "Gabungan Bangunan",
+                question: "Sebuah bangunan memiliki bentuk gabungan: bagian bawah berbentuk persegi panjang (panjang = 12 m, tinggi = 8 m), dan bagian atap berbentuk segitiga (alas = 12 m, tinggi = 5 m). Hitung luas seluruh bangunan.",
+                svg: `
+                <svg viewBox="0 0 160 120" class="w-full h-full">
+                    <!-- Atap Segitiga -->
+                    <polygon points="80,15 20,55 140,55" fill="#fecaca" stroke="#dc2626" stroke-width="2" />
+                    <!-- Rumah Persegi Panjang -->
+                    <rect x="20" y="55" width="120" height="50" fill="#fee2e2" stroke="#dc2626" stroke-width="2" />
+                    
+                    <!-- Dimensi Atap -->
+                    <line x1="80" y1="15" x2="80" y2="55" stroke="#991b1b" stroke-width="1" stroke-dasharray="2 2" />
+                    <text x="84" y="38" font-size="6" fill="#991b1b">t = 5 m</text>
+                    
+                    <!-- Dimensi Dinding -->
+                    <text x="143" y="85" font-size="6" fill="#dc2626">8 m</text>
+                    <text x="70" y="113" font-size="6" fill="#dc2626">12 m</text>
+                </svg>`,
+                options: [
+                    { id: 'A', text: "96 m²" },
+                    { id: 'B', text: "114 m²" },
+                    { id: 'C', text: "126 m²" },
+                    { id: 'D', text: "156 m²" }
+                ],
+                correct: 'C',
+                explanation: `
+                <div class="space-y-4 font-poppins">
+                    <p class="font-semibold text-slate-800">Pembelahan Luas Bangunan Gabungan! 🏠</p>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                            <p><strong>Hitung Luas Persegi Panjang (Dinding):</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas Dinding = panjang &times; lebar = 12 m &times; 8 m = <strong>96 m²</strong></p>
+                        
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                            <p><strong>Hitung Luas Segitiga (Atap):</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas Atap = &frac12; &times; alas &times; tinggi = &frac12; &times; 12 m &times; 5 m = <strong>30 m²</strong></p>
+
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                            <p><strong>Total Luas Bangunan:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-emerald-50 p-2 rounded-lg text-emerald-700 font-bold">Luas Total = 96 m² + 30 m² = 126 m²</p>
+                    </div>
+                </div>`
+            },
+            {
+                number: 3,
+                level: "MEDIUM",
+                topic: "Bentuk Huruf L",
+                question: "Sebuah bangun berbentuk huruf L memiliki panjang atas 16 cm, tinggi kiri 12 cm, dengan bagian sudut yang terpotong berbentuk persegi panjang berukuran 8 cm x 6 cm. Tentukan luas bangun tersebut.",
+                svg: `
+                <svg viewBox="0 0 160 120" class="w-full h-full">
+                    <!-- Huruf L -->
+                    <path d="M20,20 L100,20 L100,60 L140,60 L140,100 L20,100 Z" fill="#fef3c7" stroke="#d97706" stroke-width="2" />
+                    <!-- Bagian Terpotong (Garis bantu) -->
+                    <rect x="100" y="20" width="40" height="40" fill="none" stroke="#d97706" stroke-width="1.5" stroke-dasharray="2 2" />
+                    
+                    <!-- Dimensi -->
+                    <text x="50" y="15" font-size="6" fill="#d97706">16 cm (panjang atas)</text>
+                    <text x="5" y="65" font-size="6" fill="#d97706" transform="rotate(-90 5 65)">12 cm (tinggi kiri)</text>
+                    <text x="105" y="45" font-size="6" fill="#b45309">8 cm x 6 cm (potongan)</text>
+                </svg>`,
+                options: [
+                    { id: 'A', text: "128 cm²" },
+                    { id: 'B', text: "144 cm²" },
+                    { id: 'C', text: "160 cm²" },
+                    { id: 'D', text: "192 cm²" }
+                ],
+                correct: 'B',
+                explanation: `
+                <div class="space-y-4 font-poppins">
+                    <p class="font-semibold text-slate-800">Metode Pengurangan Area Kotak Utuh! ⬜</p>
+                    <p class="text-xs text-slate-500">Bayangkan bentuk huruf L tersebut awalnya adalah persegi panjang utuh berukuran besar, lalu dipotong di salah satu sudutnya.</p>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                            <p><strong>Hitung Luas Persegi Panjang Besar (Jika Utuh):</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas Utuh = 16 cm &times; 12 cm = <strong>192 cm²</strong></p>
+                        
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                            <p><strong>Hitung Luas Bagian yang Terpotong:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas Potongan = 8 cm &times; 6 cm = <strong>48 cm²</strong></p>
+
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                            <p><strong>Kurangkan Keduanya:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-emerald-50 p-2 rounded-lg text-emerald-700 font-bold">Luas Sisa (Huruf L) = 192 cm² - 48 cm² = 144 cm²</p>
+                    </div>
+                </div>`
+            },
+            {
+                number: 4,
+                level: "MEDIUM",
+                topic: "Lingkaran Dalam Persegi",
+                question: "Sebuah lingkaran tepat menyinggung keempat sisi persegi dengan panjang sisi persegi = 14 cm. Hitung luas daerah persegi yang berada di luar lingkaran. (Gunakan &pi; = 22/7)",
+                svg: `
+                <svg viewBox="0 0 160 120" class="w-full h-full">
+                    <!-- Persegi -->
+                    <rect x="30" y="10" width="100" height="100" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2" />
+                    <!-- Lingkaran Saling Menyinggung -->
+                    <circle cx="80" cy="60" r="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2" />
+                    
+                    <!-- Label Sisi -->
+                    <line x1="30" y1="115" x2="130" y2="115" stroke="#7c3aed" stroke-width="1.5" />
+                    <text x="70" y="112" font-size="6" fill="#7c3aed" font-weight="bold">sisi = 14 cm</text>
+                </svg>`,
+                options: [
+                    { id: 'A', text: "42 cm²" },
+                    { id: 'B', text: "84 cm²" },
+                    { id: 'C', text: "154 cm²" },
+                    { id: 'D', text: "196 cm²" }
+                ],
+                correct: 'A',
+                explanation: `
+                <div class="space-y-4 font-poppins">
+                    <p class="font-semibold text-slate-800">Mencari Sisi Luar Lingkaran! 🎯</p>
+                    <div class="p-3 bg-amber-50 rounded-lg text-xs text-amber-800">
+                        <strong>Logika Penting:</strong> Karena lingkaran tepat menyinggung keempat sisi persegi, maka <strong>diameter lingkaran sama dengan panjang sisi persegi</strong>, yaitu 14 cm (sehingga jari-jari $r = 7$ cm).
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                            <p><strong>Hitung Luas Persegi:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas Persegi = sisi &times; sisi = 14 cm &times; 14 cm = <strong>196 cm²</strong></p>
+                        
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                            <p><strong>Hitung Luas Lingkaran:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas Lingkaran = &pi; &times; r&sup2; = 22/7 &times; 7 &times; 7 = <strong>154 cm²</strong></p>
+
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                            <p><strong>Hitung Selisih Area:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-emerald-50 p-2 rounded-lg text-emerald-700 font-bold">Luas di luar lingkaran = 196 cm² - 154 cm² = 42 cm²</p>
+                    </div>
+                </div>`
+            },
+            {
+                number: 5,
+                level: "HARD",
+                topic: "Setengah Lingkaran + Persegi Panjang",
+                question: "Bangun terdiri dari: persegi panjang berukuran 20 cm x 12 cm dan setengah lingkaran di atasnya dengan diameter sama dengan panjang persegi panjang. Hitung luas seluruh bangun. (Gunakan &pi; = 3,14)",
+                svg: `
+                <svg viewBox="0 0 160 120" class="w-full h-full">
+                    <!-- Setengah Lingkaran Atas -->
+                    <path d="M30,55 A50,50 0 0,1 130,55 Z" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2" />
+                    <!-- Persegi Panjang Bawah -->
+                    <rect x="30" y="55" width="100" height="50" fill="#bae6fd" stroke="#0ea5e9" stroke-width="2" />
+                    
+                    <!-- Garis Batas tengah -->
+                    <line x1="30" y1="55" x2="130" y2="55" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2 2" />
+                    <!-- Dimensi -->
+                    <text x="65" y="85" font-size="6" fill="#0284c7">20 cm &times; 12 cm</text>
+                    <text x="65" y="45" font-size="6" fill="#0284c7">d = 20 cm</text>
+                </svg>`,
+                options: [
+                    { id: 'A', text: "240 cm²" },
+                    { id: 'B', text: "357 cm²" },
+                    { id: 'C', text: "397 cm²" },
+                    { id: 'D', text: "554 cm²" }
+                ],
+                correct: 'C',
+                explanation: `
+                <div class="space-y-4 font-poppins">
+                    <p class="font-semibold text-slate-800">Menghitung Luas Bangun Bertingkat! 🏗️</p>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                            <p><strong>Hitung Luas Persegi Panjang:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas Persegi Panjang = 20 cm &times; 12 cm = <strong>240 cm²</strong></p>
+                        
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                            <p><strong>Hitung Luas Setengah Lingkaran:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Diameter = 20 cm &rarr; Jari-jari ($r$) = 10 cm.<br>Luas Setengah Lingkaran = &frac12; &times; &pi; &times; r&sup2;<br>Luas = &frac12; &times; 3,14 &times; 10 &times; 10 = &frac12; &times; 314 = <strong>157 cm²</strong></p>
+
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                            <p><strong>Jumlahkan Kedua Area:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-emerald-50 p-2 rounded-lg text-emerald-700 font-bold">Luas Total = 240 cm² + 157 cm² = 397 cm²</p>
+                    </div>
+                </div>`
+            },
+            {
+                number: 6,
+                level: "HARD",
+                topic: "Pembagian Diagonal Persegi",
+                question: "Sebuah persegi memiliki sisi 20 cm. Kedua diagonal digambar sehingga membentuk 4 segitiga yang kongruen. Tentukan luas salah satu segitiga yang terbentuk.",
+                svg: `
+                <svg viewBox="0 0 160 120" class="w-full h-full">
+                    <!-- Persegi Utama -->
+                    <rect x="30" y="10" width="100" height="100" fill="#ffe4e6" stroke="#f43f5e" stroke-width="2" />
+                    <!-- Diagonal -->
+                    <line x1="30" y1="10" x2="130" y2="110" stroke="#f43f5e" stroke-width="1.5" />
+                    <line x1="130" y1="10" x2="30" y2="110" stroke="#f43f5e" stroke-width="1.5" />
+                    
+                    <!-- Arsir salah satu segitiga (Bawah) -->
+                    <polygon points="30,110 80,60 130,110" fill="#f43f5e" opacity="0.3" />
+                    
+                    <text x="65" y="90" font-size="6" fill="#be123c">Segitiga Diarsir</text>
+                </svg>`,
+                options: [
+                    { id: 'A', text: "50 cm²" },
+                    { id: 'B', text: "100 cm²" },
+                    { id: 'C', text: "200 cm²" },
+                    { id: 'D', text: "400 cm²" }
+                ],
+                correct: 'B',
+                explanation: `
+                <div class="space-y-4 font-poppins">
+                    <p class="font-semibold text-slate-800">Konsep Pembagian Simetris! 🍰</p>
+                    <p class="text-xs text-slate-500">Dua garis diagonal pada persegi selalu membagi bangun tersebut menjadi <strong>4 bagian segitiga yang sama besar (kongruen)</strong>.</p>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                            <p><strong>Hitung Luas Persegi Utama:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas Persegi = sisi &times; sisi = 20 cm &times; 20 cm = <strong>400 cm²</strong></p>
+                        
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                            <p><strong>Bagi Area Menjadi 4 Bagian:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas 1 Segitiga = Luas Persegi / 4 = 400 cm² / 4 = <strong>100 cm²</strong></p>
+
+                        <p class="text-xs pl-7 text-emerald-600 font-bold">Sangat mudah dibayangkan dengan cara memotong kue persegi menjadi empat bagian!</p>
+                    </div>
+                </div>`
+            },
+            {
+                number: 7,
+                level: "HARD",
+                topic: "Sudut Seperempat Lingkaran",
+                question: "Sebuah persegi memiliki sisi 14 cm. Di setiap sudut dibuat seperempat lingkaran berjari-jari 7 cm. Tentukan luas daerah yang tidak tertutup oleh keempat seperempat lingkaran tersebut. (Gunakan &pi; = 22/7)",
+                svg: `
+                <svg viewBox="0 0 160 120" class="w-full h-full">
+                    <!-- Persegi Utama -->
+                    <rect x="30" y="10" width="100" height="100" fill="#fef9c3" stroke="#ca8a04" stroke-width="2" />
+                    <!-- Empat Seperempat Lingkaran di Sudut -->
+                    <path d="M30,45 A35,35 0 0,0 65,10 L30,10 Z" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5" />
+                    <path d="M130,45 A35,35 0 0,1 95,10 L130,10 Z" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5" />
+                    <path d="M30,75 A35,35 0 0,1 65,110 L30,110 Z" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5" />
+                    <path d="M130,75 A35,35 0 0,0 95,110 L130,110 Z" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5" />
+                    
+                    <text x="65" y="60" font-size="6" fill="#854d0e">Sisa Luas</text>
+                </svg>`,
+                options: [
+                    { id: 'A', text: "28 cm²" },
+                    { id: 'B', text: "42 cm²" },
+                    { id: 'C', text: "154 cm²" },
+                    { id: 'D', text: "196 cm²" }
+                ],
+                correct: 'B',
+                explanation: `
+                <div class="space-y-4 font-poppins">
+                    <p class="font-semibold text-slate-800">Menyusun Kepingan Lingkaran! 🧩</p>
+                    <div class="p-3 bg-amber-50 rounded-lg text-xs text-amber-800">
+                        <strong>Trik Geometri:</strong> Empat buah seperempat lingkaran jika digabungkan bersama akan membentuk <strong>1 buah lingkaran utuh</strong> dengan jari-jari yang sama ($r = 7$ cm).
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                            <p><strong>Hitung Luas Persegi:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas Persegi = 14 cm &times; 14 cm = <strong>196 cm²</strong></p>
+                        
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                            <p><strong>Hitung Luas Penggabungan (1 Lingkaran Utuh):</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas Lingkaran = &pi; &times; r&sup2; = 22/7 &times; 7 &times; 7 = <strong>154 cm²</strong></p>
+
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                            <p><strong>Hitung Luas yang Tidak Tertutup:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-emerald-50 p-2 rounded-lg text-emerald-700 font-bold">Sisa Luas = Luas Persegi - Luas Gabungan Lingkaran = 196 cm² - 154 cm² = 42 cm²</p>
+                    </div>
+                </div>`
+            },
+            {
+                number: 8,
+                level: "HARD",
+                topic: "Segienam Beraturan",
+                question: "Sebuah segienam beraturan memiliki panjang sisi 12 cm. Segienam beraturan dapat dibagi menjadi 6 segitiga sama sisi yang kongruen. Jika luas satu segitiga sama sisi tersebut adalah 36&radic;3 cm², hitung luas segienam tersebut.",
+                svg: `
+                <svg viewBox="0 0 160 120" class="w-full h-full">
+                    <!-- Segienam dengan garis bantu segitiga di dalamnya -->
+                    <polygon points="80,15 125,40 125,90 80,115 35,90 35,40" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2" />
+                    <!-- Garis pembagi segitiga -->
+                    <line x1="80" y1="15" x2="80" y2="115" stroke="#a78bfa" stroke-width="1" />
+                    <line x1="125" y1="40" x2="35" y2="90" stroke="#a78bfa" stroke-width="1" />
+                    <line x1="125" y1="90" x2="35" y2="40" stroke="#a78bfa" stroke-width="1" />
+                    
+                    <text x="65" y="65" font-size="6" fill="#6d28d9" font-weight="bold">6 &times; Segitiga</text>
+                </svg>`,
+                options: [
+                    { id: 'A', text: "72\u221A3 cm²" },
+                    { id: 'B', text: "144\u221A3 cm²" },
+                    { id: 'C', text: "216\u221A3 cm²" },
+                    { id: 'D', text: "432\u221A3 cm²" }
+                ],
+                correct: 'C',
+                explanation: `
+                <div class="space-y-4 font-poppins">
+                    <p class="font-semibold text-slate-800">Menghitung Poligon Segienam! 💎</p>
+                    <div class="p-4 bg-white rounded-xl border border-slate-100 shadow-sm space-y-2 text-xs text-slate-500">
+                        <p class="font-semibold text-indigo-600"><i class="fa-solid fa-circle-question"></i> Kenapa Bisa Dibagi Menjadi 6 Segitiga?</p>
+                        <p>Sudut pusat lingkaran penuh adalah 360&deg;. Pada segienam beraturan, sudut ini terbagi rata menjadi 6 sudut pusat sebesar 60&deg;, membentuk 6 buah segitiga sama sisi sempurna.</p>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                            <p><strong>Rumus Total Luas:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas Segienam = 6 &times; Luas Satu Segitiga Sama Sisi</p>
+                        
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                            <p><strong>Hitung Nilai Akhir:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas = 6 &times; 36&radic;3 cm&sup2; = <strong>216&radic;3 cm²</strong></p>
+                    </div>
+                </div>`
+            },
+            {
+                number: 9,
+                level: "HARD",
+                topic: "Jalan Setapak",
+                question: "Sebuah taman berbentuk persegi dengan sisi 30 m. Di sekeliling bagian dalam taman dibuat jalan setapak dengan lebar 3 m. Tentukan luas jalan setapak tersebut.",
+                svg: `
+                <svg viewBox="0 0 160 120" class="w-full h-full">
+                    <!-- Taman Luar -->
+                    <rect x="25" y="10" width="100" height="100" fill="#bbf7d0" stroke="#16a34a" stroke-width="2" />
+                    <!-- Taman Dalam (Sisa) -->
+                    <rect x="37" y="22" width="76" height="76" fill="#e8f5e9" stroke="#16a34a" stroke-width="1" />
+                    
+                    <!-- Label Lebar Jalan -->
+                    <line x1="25" y1="50" x2="37" y2="50" stroke="#f43f5e" stroke-width="1.5" />
+                    <text x="27" y="45" font-size="5" fill="#f43f5e" font-weight="bold">3 m</text>
+                    
+                    <text x="50" y="60" font-size="6" fill="#15803d">Sisa Dalam</text>
+                </svg>`,
+                options: [
+                    { id: 'A', text: "276 m²" },
+                    { id: 'B', text: "324 m²" },
+                    { id: 'C', text: "576 m²" },
+                    { id: 'D', text: "900 m²" }
+                ],
+                correct: 'B',
+                explanation: `
+                <div class="space-y-4 font-poppins">
+                    <p class="font-semibold text-slate-800">Menghitung Area Bingkai (Jalan Setapak)! 🛣️</p>
+                    <div class="p-3 bg-amber-50 rounded-lg text-xs text-amber-800">
+                        <strong>Hati-hati Pengurangan Lebar!</strong> Karena jalan melingkar di sekeliling bagian dalam, maka sisi persegi dalam akan berkurang selebar 3 meter di sisi kiri DAN 3 meter di sisi kanan! (Total berkurang 6 meter).
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                            <p><strong>Hitung Luas Persegi Luar (Total):</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas Luar = 30 m &times; 30 m = <strong>900 m²</strong></p>
+                        
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                            <p><strong>Hitung Dimensi dan Luas Persegi Dalam:</strong></p>
+                        </div>
+                        <ul class="text-xs pl-7 list-disc space-y-1 text-slate-600">
+                            <li>Sisi Dalam = 30 m - 3 m (kiri) - 3 m (kanan) = <strong>24 m</strong></li>
+                            <li>Luas Dalam = 24 m &times; 24 m = <strong>576 m²</strong></li>
+                        </ul>
+
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                            <p><strong>Hitung Luas Jalan Setapak:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-emerald-50 p-2 rounded-lg text-emerald-700 font-bold">Luas Jalan = Luas Luar - Luas Dalam = 900 m² - 576 m² = 324 m²</p>
+                    </div>
+                </div>`
+            },
+            {
+                number: 10,
+                level: "HARD",
+                topic: "Kombinasi Beberapa Bangun",
+                question: "Hitung luas seluruh bangun bertingkat yang terdiri dari: Segitiga atas (alas=10 cm, tinggi=6 cm), Persegi panjang tengah (panjang=10 cm, tinggi=12 cm), dan Trapesium bawah (sisi sejajar=10 cm dan 18 cm, tinggi=8 cm).",
+                svg: `
+                <svg viewBox="0 0 160 140" class="w-full h-full">
+                    <!-- Segitiga Atas -->
+                    <polygon points="80,10 50,40 110,40" fill="#ddd6fe" stroke="#7c3aed" stroke-width="1.5" />
+                    <!-- Persegi Panjang Tengah -->
+                    <rect x="50" y="40" width="60" height="50" fill="#c084fc" stroke="#7c3aed" stroke-width="1.5" />
+                    <!-- Trapesium Bawah -->
+                    <polygon points="50,90 110,90 130,130 30,130" fill="#f472b6" stroke="#7c3aed" stroke-width="1.5" />
+                    
+                    <text x="73" y="30" font-size="5" fill="#5b21b6">I</text>
+                    <text x="77" y="65" font-size="5" fill="#5b21b6">II</text>
+                    <text x="77" y="115" font-size="5" fill="#5b21b6">III</text>
+                </svg>`,
+                options: [
+                    { id: 'A', text: "150 cm²" },
+                    { id: 'B', text: "240 cm²" },
+                    { id: 'C', text: "262 cm²" },
+                    { id: 'D', text: "312 cm²" }
+                ],
+                correct: 'C',
+                explanation: `
+                <div class="space-y-4 font-poppins">
+                    <p class="font-semibold text-slate-800">Menjumlahkan 3 Bentuk Geometri! 🧩</p>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                            <p><strong>Luas Bangun I (Segitiga):</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas = &frac12; &times; 10 &times; 6 = <strong>30 cm²</strong></p>
+                        
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                            <p><strong>Luas Bangun II (Persegi Panjang):</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas = 10 &times; 12 = <strong>120 cm²</strong></p>
+
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                            <p><strong>Luas Bangun III (Trapesium):</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas = &frac12; &times; (10 + 18) &times; 8 = 14 &times; 8 = <strong>112 cm²</strong></p>
+
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center text-xs font-bold">4</span>
+                            <p><strong>Total Seluruh Bangun:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-emerald-50 p-2 rounded-lg text-emerald-700 font-bold">Luas Total = 30 + 120 + 112 = 262 cm²</p>
+                    </div>
+                </div>`
+            },
+            {
+                number: 11,
+                level: "CHALLENGE",
+                topic: "Tantangan Sudut Melengkung",
+                question: "Sebuah persegi memiliki panjang sisi 20 cm. Di dalamnya terdapat 4 buah seperempat lingkaran yang masing-masing berpusat di setiap sudut persegi dengan jari-jari 10 cm. Hitung luas daerah persegi yang tidak tertutup oleh keempat lingkaran tersebut. (Gunakan &pi; = 3,14)",
+                svg: `
+                <svg viewBox="0 0 160 120" class="w-full h-full">
+                    <!-- Persegi -->
+                    <rect x="30" y="10" width="100" height="100" fill="#fed7aa" stroke="#ea580c" stroke-width="2" />
+                    <!-- Seperempat lingkaran r=10 (r = setengah sisi persegi) -->
+                    <path d="M30,60 A50,50 0 0,0 80,10 L30,10 Z" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" />
+                    <path d="M130,60 A50,50 0 0,1 80,10 L130,10 Z" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" />
+                    <path d="M30,60 A50,50 0 0,1 80,110 L30,110 Z" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" />
+                    <path d="M130,60 A50,50 0 0,0 80,110 L130,110 Z" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" />
+                    
+                    <text x="73" y="63" font-size="6" fill="#c2410c">Sisa</text>
+                </svg>`,
+                options: [
+                    { id: 'A', text: "86 cm²" },
+                    { id: 'B', text: "172 cm²" },
+                    { id: 'C', text: "314 cm²" },
+                    { id: 'D', text: "400 cm²" }
+                ],
+                correct: 'A',
+                explanation: `
+                <div class="space-y-4 font-poppins">
+                    <p class="font-semibold text-slate-800">Menyelesaikan Level Kompetisi! 🏆</p>
+                    <div class="p-4 bg-indigo-50 border border-indigo-100 rounded-xl text-xs text-indigo-800">
+                        Sama seperti Soal 7, gabungan dari 4 buah seperempat lingkaran setara dengan <strong>1 buah lingkaran penuh</strong>. Bedanya, di sini kita menggunakan jari-jari $r = 10$ cm dan nilai &pi; = 3,14.
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                            <p><strong>Hitung Luas Persegi:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas Persegi = 20 cm &times; 20 cm = <strong>400 cm²</strong></p>
+                        
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                            <p><strong>Hitung Luas Gabungan Lingkaran:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas 1 Lingkaran Utuh = &pi; &times; r&sup2; = 3,14 &times; 10 &times; 10 = <strong>314 cm²</strong></p>
+
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                            <p><strong>Tentukan Selisih Area:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-emerald-50 p-2 rounded-lg text-emerald-700 font-bold">Luas yang Tidak Tertutup = 400 cm² - 314 cm² = 86 cm²</p>
+                    </div>
+                </div>`
+            },
+            {
+                number: 12,
+                level: "CHALLENGE",
+                topic: "Persegi Dalam Lingkaran",
+                question: "Sebuah lingkaran berjari-jari 14 cm. Di dalam lingkaran tersebut dibuat persegi dengan keempat titik sudutnya tepat berada pada lingkaran. Hitung luas daerah lingkaran yang berada di luar persegi. (Gunakan &pi; = 22/7)",
+                svg: `
+                <svg viewBox="0 0 160 120" class="w-full h-full">
+                    <!-- Lingkaran Luar -->
+                    <circle cx="80" cy="60" r="50" fill="#d1fae5" stroke="#059669" stroke-width="2" />
+                    <!-- Persegi di Dalam (Diputar 45 derajat/menempel sudut) -->
+                    <polygon points="80,10 130,60 80,110 30,60" fill="#ffffff" stroke="#059669" stroke-width="2" />
+                    
+                    <!-- Garis Diagonal (Diameter) -->
+                    <line x1="30" y1="60" x2="130" y2="60" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="2 2" />
+                    <text x="65" y="55" font-size="5" fill="#ef4444">Diagonal = 28</text>
+                </svg>`,
+                options: [
+                    { id: 'A', text: "112 cm²" },
+                    { id: 'B', text: "224 cm²" },
+                    { id: 'C', text: "392 cm²" },
+                    { id: 'D', text: "616 cm²" }
+                ],
+                correct: 'B',
+                explanation: `
+                <div class="space-y-4 font-poppins">
+                    <p class="font-semibold text-slate-800">Tantangan Geometri Tingkat Tinggi! 🌟</p>
+                    <div class="p-4 bg-emerald-50 border border-emerald-100 rounded-xl text-xs text-emerald-800">
+                        <strong>Kunci Visualisasi:</strong> Karena keempat sudut persegi menempel tepat pada tepi lingkaran, maka panjang <strong>diagonal persegi sama dengan diameter lingkaran</strong>, yaitu $2 \times 14 = 28$ cm.
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                            <p><strong>Hitung Luas Lingkaran:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas Lingkaran = &pi; &times; r&sup2; = 22/7 &times; 14 &times; 14 = 22 &times; 2 &times; 14 = <strong>616 cm²</strong></p>
+                        
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                            <p><strong>Hitung Luas Persegi Menggunakan Rumus Diagonal:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-slate-50 p-2 rounded-lg text-slate-600">Luas Persegi = &frac12; &times; d&sup2;<br>Luas = &frac12; &times; 28 &times; 28 = 14 &times; 28 = <strong>392 cm²</strong></p>
+
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                            <p><strong>Hitung Area di Luar Persegi:</strong></p>
+                        </div>
+                        <p class="text-xs pl-7 bg-emerald-50 p-2 rounded-lg text-emerald-700 font-bold">Sisa Luas = Luas Lingkaran - Luas Persegi = 616 cm² - 392 cm² = 224 cm²</p>
+                    </div>
+                </div>`
+            }
+        ];
+
+        // State Manajemen Aplikasi Kuis
+        let currentIdx = 0;
+        let selectedOption = null;
+        let userAnswers = Array(12).fill(null); // Menyimpan status: null, 'correct', 'incorrect'
+        let selectedAnswers = Array(12).fill(null); // Menyimpan opsi jawaban terpilih ('A', 'B', 'C', 'D')
+
+        // Fungsi Memulai Kuis Pertama Kali
+        window.onload = function() {
+            renderNavigasi();
+            loadQuestion(0);
+            updateStatistikView();
+        }
+
+        // Render Tombol Navigasi 1-12
+        function renderNavigasi() {
+            const grid = document.getElementById('grid-navigasi');
+            grid.innerHTML = '';
+            for (let i = 0; i < 12; i++) {
+                const btn = document.createElement('button');
+                btn.id = `nav-btn-${i}`;
+                btn.textContent = i + 1;
+                btn.className = getNavBtnClass(i);
+                btn.onclick = () => loadQuestion(i);
+                grid.appendChild(btn);
+            }
+        }
+
+        // Penataan Kelas CSS Dinamis Tombol Navigasi Angka
+        function getNavBtnClass(index) {
+            let base = "h-11 rounded-xl font-bold font-poppins text-sm transition-all duration-200 border flex items-center justify-center ";
+            if (index === currentIdx) {
+                return base + "bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-100";
+            }
+            if (userAnswers[index] === 'correct') {
+                return base + "bg-emerald-500 text-white border-emerald-500 shadow-sm shadow-emerald-100";
+            }
+            if (userAnswers[index] === 'incorrect') {
+                return base + "bg-rose-500 text-white border-rose-500 shadow-sm shadow-rose-100";
+            }
+            return base + "bg-slate-50 text-slate-500 border-slate-200 hover:bg-slate-100";
+        }
+
+        // Memuat Pertanyaan ke Kartu Utama
+        function loadQuestion(index) {
+            currentIdx = index;
+            const q = questionsData[index];
+            selectedOption = selectedAnswers[index];
+
+            // Update info atas
+            document.getElementById('info-nomor-soal').textContent = `SOAL ${index + 1} DARI 12`;
+            document.getElementById('info-level-soal').textContent = q.level;
+            
+            // Atur warna label level tingkat kesulitan
+            const levelLabel = document.getElementById('info-level-soal');
+            if (q.level === 'CHALLENGE') {
+                levelLabel.className = "ml-3 px-2.5 py-0.5 bg-rose-50 text-rose-700 text-[10px] font-bold rounded-full font-poppins";
+            } else if (q.level === 'HARD') {
+                levelLabel.className = "ml-3 px-2.5 py-0.5 bg-amber-50 text-amber-700 text-[10px] font-bold rounded-full font-poppins";
+            } else {
+                levelLabel.className = "ml-3 px-2.5 py-0.5 bg-indigo-50 text-indigo-700 text-[10px] font-bold rounded-full font-poppins";
+            }
+
+            document.getElementById('info-topik').textContent = q.topic;
+            document.getElementById('teks-pertanyaan').innerHTML = q.question;
+            document.getElementById('visual-container').innerHTML = q.svg;
+
+            // Render Opsi PG
+            const opsiContainer = document.getElementById('container-opsi');
+            opsiContainer.innerHTML = '';
+            
+            q.options.forEach(opt => {
+                const isSelected = selectedOption === opt.id;
+                const button = document.createElement('button');
+                button.className = `w-full text-left p-4 rounded-xl border-2 transition-all duration-200 flex items-center gap-4 ${
+                    isSelected 
+                    ? 'border-indigo-600 bg-indigo-50/50 text-indigo-900 font-bold' 
+                    : 'border-slate-100 hover:border-slate-300 bg-white text-slate-700'
+                }`;
+                button.disabled = userAnswers[index] !== null; // Kunci jika sudah dijawab
+                button.onclick = () => selectOption(opt.id);
+
+                let checkIndicator = `<span class="w-6 h-6 rounded-full border border-slate-300 flex items-center justify-center text-xs text-slate-400 shrink-0 bg-white font-bold font-poppins">${opt.id}</span>`;
+                if (isSelected) {
+                    checkIndicator = `<span class="w-6 h-6 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs shrink-0 font-bold font-poppins">${opt.id}</span>`;
+                }
+
+                // Efek status warna pada opsi jika sudah diperiksa
+                if (userAnswers[index] !== null) {
+                    if (opt.id === q.correct) {
+                        button.className = "w-full text-left p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold flex items-center gap-4";
+                        checkIndicator = `<span class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-check"></i></span>`;
+                    } else if (isSelected && opt.id !== q.correct) {
+                        button.className = "w-full text-left p-4 rounded-xl border-2 border-rose-500 bg-rose-50 text-rose-900 font-bold flex items-center gap-4";
+                        checkIndicator = `<span class="w-6 h-6 rounded-full bg-rose-500 text-white flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-xmark"></i></span>`;
+                    }
+                }
+
+                button.innerHTML = `
+                    ${checkIndicator}
+                    <span class="text-sm md:text-base font-poppins">${opt.text}</span>
+                `;
+                opsiContainer.appendChild(button);
+            });
+
+            // Sembunyikan atau tampilkan box pembahasan secara otomatis
+            const boxPembahasan = document.getElementById('box-pembahasan');
+            const btnPeriksa = document.getElementById('btn-periksa');
+            
+            if (userAnswers[index] !== null) {
+                boxPembahasan.classList.remove('hidden');
+                btnPeriksa.classList.add('hidden');
+                
+                document.getElementById('pembahasan-teks').innerHTML = q.explanation;
+                
+                const iconBox = document.getElementById('pembahasan-icon');
+                const judulBox = document.getElementById('pembahasan-judul');
+                
+                if (userAnswers[index] === 'correct') {
+                    boxPembahasan.className = "bg-emerald-50 border border-emerald-200 rounded-2xl p-6 md:p-8 shadow-sm transition-all duration-300";
+                    iconBox.className = "w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-white text-lg shrink-0";
+                    iconBox.innerHTML = '<i class="fa-solid fa-star"></i>';
+                    judulBox.innerHTML = 'Hebat, Jawabanmu Benar! ✨';
+                } else {
+                    boxPembahasan.className = "bg-rose-50 border border-rose-200 rounded-2xl p-6 md:p-8 shadow-sm transition-all duration-300";
+                    iconBox.className = "w-10 h-10 bg-rose-500 rounded-xl flex items-center justify-center text-white text-lg shrink-0";
+                    iconBox.innerHTML = '<i class="fa-solid fa-brain"></i>';
+                    judulBox.innerHTML = 'Kurang Tepat, Mari Pelajari Caranya:';
+                }
+            } else {
+                boxPembahasan.classList.add('hidden');
+                btnPeriksa.classList.remove('hidden');
+            }
+
+            renderNavigasi();
+        }
+
+        // Memilih Opsi Jawaban
+        function selectOption(optId) {
+            if (userAnswers[currentIdx] !== null) return;
+            selectedOption = optId;
+            selectedAnswers[currentIdx] = optId;
+            loadQuestion(currentIdx);
+        }
+
+        // Lewati Soal
+        function lewatiSoal() {
+            nextSoal();
+        }
+
+        // Klik Tombol Periksa Jawaban
+        function periksaJawaban() {
+            if (!selectedOption) {
+                showToast("Pilih salah satu jawaban dulu ya!");
+                return;
+            }
+
+            const q = questionsData[currentIdx];
+            if (selectedOption === q.correct) {
+                userAnswers[currentIdx] = 'correct';
+            } else {
+                userAnswers[currentIdx] = 'incorrect';
+            }
+
+            updateStatistikView();
+            loadQuestion(currentIdx);
+        }
+
+        // Pindah Soal Berikutnya (Rotasi melingkar kembali ke nomor 1 setelah nomor 12)
+        function nextSoal() {
+            const nextIdx = (currentIdx + 1) % 12;
+            loadQuestion(nextIdx);
+        }
+
+        // Sinkronisasi Data Statistik Belajar
+        function updateStatistikView() {
+            const countSelesai = userAnswers.filter(ans => ans !== null).length;
+            const countBenar = userAnswers.filter(ans => ans === 'correct').length;
+
+            document.getElementById('score-progres').textContent = `${countSelesai}/12`;
+            document.getElementById('score-benar').textContent = countBenar;
+            
+            document.getElementById('stat-selesai').textContent = countSelesai;
+            document.getElementById('stat-benar').textContent = countBenar;
+        }
+
+        // Tab Switch Panel Kontrol Atas
+        function switchTab(tabName) {
+            document.getElementById('view-kuis').classList.add('hidden');
+            document.getElementById('view-rumus').classList.add('hidden');
+            document.getElementById('view-stat').classList.add('hidden');
+
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => {
+                tab.className = "tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900 flex items-center gap-2 whitespace-nowrap";
+            });
+
+            if (tabName === 'kuis') {
+                document.getElementById('view-kuis').classList.remove('hidden');
+                document.getElementById('tab-kuis').className = "tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-lg transition-all duration-200 bg-white text-indigo-600 shadow-sm flex items-center gap-2 whitespace-nowrap";
+            } else if (tabName === 'rumus') {
+                document.getElementById('view-rumus').classList.remove('hidden');
+                document.getElementById('tab-rumus').className = "tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-lg transition-all duration-200 bg-white text-indigo-600 shadow-sm flex items-center gap-2 whitespace-nowrap";
+            } else if (tabName === 'stat') {
+                document.getElementById('view-stat').classList.remove('hidden');
+                document.getElementById('tab-stat').className = "tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-lg transition-all duration-200 bg-white text-indigo-600 shadow-sm flex items-center gap-2 whitespace-nowrap";
+            }
+        }
+
+        // Toast Cantik Ringan Pengganti Alert
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = "fixed bottom-5 right-5 bg-slate-900 text-white text-sm px-5 py-3 rounded-xl shadow-lg flex items-center gap-2 z-50 transition-all duration-300";
+            toast.innerHTML = `<i class="fa-solid fa-circle-exclamation text-amber-400"></i> ${message}`;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
